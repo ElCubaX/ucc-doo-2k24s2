@@ -1,0 +1,18 @@
+atributos:
+marca
+color
+tamaño
+peso
+ancho
+altura
+proposito=carga, turistico
+ 
+comportamientos:
+acelerar
+sumergirse
+navegar
+detenerse
+girar
+descargar
+flotar
+sumergirse

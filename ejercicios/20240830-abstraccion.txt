@@ -1,0 +1,16 @@
+atributos:
+largo
+ancho
+color
+peso
+marca
+altura
+
+Metodos:
+desplazar
+acelerar
+flotar
+sumergirse
+sobrecarga
+impulso
+
