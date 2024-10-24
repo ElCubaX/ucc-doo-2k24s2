@@ -1,111 +1,128 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     12/09/2024 10:34:56 p. m.                    */
+/* Created on:     24/10/2024 6:13:50 p. m.                     */
 /*==============================================================*/
 
 
-drop table APUESTA;
+drop table AUTOBUS;
 
-drop table DETALLE_APUESTA_LOTERIA;
+drop table CHECKIN;
 
-drop table DETALLE_APUESTA_NUMERO;
+drop table PASAJE;
 
-drop table LOTERIA;
+drop table PASAJERO;
 
-drop table NUMERO_DE_APUESTA;
+drop table RESERVA;
 
-drop table USUARIO;
+drop table RUTA;
 
 /*==============================================================*/
-/* Table: APUESTA                                               */
+/* Table: AUTOBUS                                               */
 /*==============================================================*/
-create table APUESTA (
-   ID_APUESTA           DECIMAL(10)          not null,
-   FECHA                DATE                 null,
-   VALOR_APOSTADO       DECIMAL(10,2)        null,
-   ID_USUARIO           DECIMAL(10)          null,
-   ID_LOTERIA           DECIMAL(10)          null,
-   constraint PK_APUESTA primary key (ID_APUESTA)
+create table AUTOBUS (
+   ID_VEHICULO          NUMERIC(10)          not null,
+   ID_RUTA              NUMERIC(10)          not null,
+   MATRICULO            VARCHAR(50)          not null,
+   CAPACIDAD            DECIMAL(10)          not null,
+   TIPO_DE_VEHICULO     VARCHAR(20)          null,
+   constraint PK_AUTOBUS primary key (ID_VEHICULO)
 );
 
 /*==============================================================*/
-/* Table: DETALLE_APUESTA_LOTERIA                               */
+/* Table: CHECKIN                                               */
 /*==============================================================*/
-create table DETALLE_APUESTA_LOTERIA (
-   ID_DETALLE_APUESTA_LOTERIA DECIMAL(10)          not null,
-   ID_APUESTA           DECIMAL(10)          null,
-   ID_LOTERIA           DECIMAL(10)          null,
-   LOT_ID_LOTERIA       DECIMAL(10)          null,
-   constraint PK_DETALLE_APUESTA_LOTERIA primary key (ID_DETALLE_APUESTA_LOTERIA)
+create table CHECKIN (
+   ID_CHECKIN           NUMERIC(10)          not null,
+   ID_RESERVA           NUMERIC(10)          null,
+   ID_PASAJE            NUMERIC(10)          null,
+   FECHA_CHECKIN        DATE                 null,
+   HORA_CHECKIN         TIME                 null,
+   ESTADO               BOOL                 null,
+   constraint PK_CHECKIN primary key (ID_CHECKIN)
 );
 
 /*==============================================================*/
-/* Table: DETALLE_APUESTA_NUMERO                                */
+/* Table: PASAJE                                                */
 /*==============================================================*/
-create table DETALLE_APUESTA_NUMERO (
-   ID_DETALLE_APUESTA_NUMERO DECIMAL(10)          not null,
-   ID_APUESTA           DECIMAL(10)          null,
-   ID_NUMERO_APUESTA    DECIMAL(10)          null,
-   constraint PK_DETALLE_APUESTA_NUMERO primary key (ID_DETALLE_APUESTA_NUMERO)
+create table PASAJE (
+   ID_PASAJE            NUMERIC(10)          not null,
+   ID_RESERVA           NUMERIC(10)          not null,
+   ID_VEHICULO          NUMERIC(10)          not null,
+   FECHA_VIAJE          DATE                 not null,
+   HORA_VIAJE           TIME                 not null,
+   NUMERO_ASIENTO       NUMERIC(10)          not null,
+   constraint PK_PASAJE primary key (ID_PASAJE)
 );
 
 /*==============================================================*/
-/* Table: LOTERIA                                               */
+/* Table: PASAJERO                                              */
 /*==============================================================*/
-create table LOTERIA (
-   ID_LOTERIA           DECIMAL(10)          not null,
-   NOMBRE_LOTERIA       VARCHAR(50)          null,
-   HORARIO_LOTERIA      TIME WITH TIME ZONE  null,
-   constraint PK_LOTERIA primary key (ID_LOTERIA)
+create table PASAJERO (
+   ID_PASAJERO          DECIMAL(10)          not null,
+   NOMBRE               VARCHAR(20)          not null,
+   APELLIDO             VARCHAR(20)          not null,
+   DOCUMENTO            VARCHAR(50)          not null,
+   TELEFONO             NUMERIC(10)          null,
+   CORREO               VARCHAR(50)          null,
+   constraint PK_PASAJERO primary key (ID_PASAJERO)
 );
 
 /*==============================================================*/
-/* Table: NUMERO_DE_APUESTA                                     */
+/* Table: RESERVA                                               */
 /*==============================================================*/
-create table NUMERO_DE_APUESTA (
-   ID_NUMERO_APUESTA    DECIMAL(10)          not null,
-   NUMERO               INT2                 null,
-   constraint PK_NUMERO_DE_APUESTA primary key (ID_NUMERO_APUESTA)
+create table RESERVA (
+   ID_RESERVA           NUMERIC(10)          not null,
+   ID_PASAJERO          DECIMAL(10)          not null,
+   ID_VEHICULO          NUMERIC(10)          not null,
+   FECHA_RESERVA        DATE                 not null,
+   ESTADO               BOOL                 not null,
+   METODO_DE_PAGO       VARCHAR(10)          null,
+   constraint PK_RESERVA primary key (ID_RESERVA)
 );
 
 /*==============================================================*/
-/* Table: USUARIO                                               */
+/* Table: RUTA                                                  */
 /*==============================================================*/
-create table USUARIO (
-   ID_USUARIO           DECIMAL(10)          not null,
-   NOMBRE               VARCHAR(50)          null,
-   EMAIL                VARCHAR(50)          null,
-   CONTRASENA           VARCHAR(50)          null,
-   constraint PK_USUARIO primary key (ID_USUARIO)
+create table RUTA (
+   ID_RUTA              NUMERIC(10)          not null,
+   ORIGEN               VARCHAR(20)          not null,
+   DESTINO              VARCHAR(20)          not null,
+   DURACION_ESTIMADA    TIMESTAMP            null,
+   constraint PK_RUTA primary key (ID_RUTA)
 );
 
-alter table APUESTA
-   add constraint FK_APUESTA_APUESTA_U_USUARIO foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO)
+alter table AUTOBUS
+   add constraint FK_AUTOBUS_REFERENCE_RUTA foreign key (ID_RUTA)
+      references RUTA (ID_RUTA)
       on delete restrict on update restrict;
 
-alter table DETALLE_APUESTA_LOTERIA
-   add constraint FK_DETALLE__DETALLE_A_APUESTA foreign key (ID_APUESTA)
-      references APUESTA (ID_APUESTA)
+alter table CHECKIN
+   add constraint FK_CHECKIN_REFERENCE_RESERVA foreign key (ID_RESERVA)
+      references RESERVA (ID_RESERVA)
       on delete restrict on update restrict;
 
-alter table DETALLE_APUESTA_LOTERIA
-   add constraint FK_DETALLE__DETALLE_D_LOTERIA foreign key (ID_LOTERIA)
-      references LOTERIA (ID_LOTERIA)
+alter table CHECKIN
+   add constraint FK_CHECKIN_REFERENCE_PASAJE foreign key (ID_PASAJE)
+      references PASAJE (ID_PASAJE)
       on delete restrict on update restrict;
 
-alter table DETALLE_APUESTA_LOTERIA
-   add constraint FK_DETALLE__DETALLE_Y_LOTERIA foreign key (LOT_ID_LOTERIA)
-      references LOTERIA (ID_LOTERIA)
+alter table PASAJE
+   add constraint FK_PASAJE_REFERENCE_RESERVA foreign key (ID_RESERVA)
+      references RESERVA (ID_RESERVA)
       on delete restrict on update restrict;
 
-alter table DETALLE_APUESTA_NUMERO
-   add constraint FK_DETALLE__DETALLE_Y_APUESTA foreign key (ID_APUESTA)
-      references APUESTA (ID_APUESTA)
+alter table PASAJE
+   add constraint FK_PASAJE_REFERENCE_AUTOBUS foreign key (ID_VEHICULO)
+      references AUTOBUS (ID_VEHICULO)
       on delete restrict on update restrict;
 
-alter table DETALLE_APUESTA_NUMERO
-   add constraint FK_DETALLE__REFERENCI_NUMERO_D foreign key (ID_NUMERO_APUESTA)
-      references NUMERO_DE_APUESTA (ID_NUMERO_APUESTA)
+alter table RESERVA
+   add constraint FK_RESERVA_REFERENCE_PASAJERO foreign key (ID_PASAJERO)
+      references PASAJERO (ID_PASAJERO)
+      on delete restrict on update restrict;
+
+alter table RESERVA
+   add constraint FK_RESERVA_REFERENCE_AUTOBUS foreign key (ID_VEHICULO)
+      references AUTOBUS (ID_VEHICULO)
       on delete restrict on update restrict;
 

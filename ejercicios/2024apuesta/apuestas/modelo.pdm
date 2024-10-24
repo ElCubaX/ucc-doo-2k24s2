@@ -4345,7 +4345,7 @@ Shadow=0</a:DisplayPreferences>
 <o:ReferenceSymbol Id="o6">
 <a:CreationDate>1726277031</a:CreationDate>
 <a:ModificationDate>1726277288</a:ModificationDate>
-<a:Rect>((-12912,-12932), (24421,-5750))</a:Rect>
+<a:Rect>((-12912,-12932), (24511,-5750))</a:Rect>
 <a:ListOfPoints>((-12512,-11900),(17011,-11900),(17011,-6150))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4367,7 +4367,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o10">
 <a:CreationDate>1726277069</a:CreationDate>
 <a:ModificationDate>1726277413</a:ModificationDate>
-<a:Rect>((-20612,-6891), (-5613,-1850))</a:Rect>
+<a:Rect>((-20702,-6891), (-5522,-1850))</a:Rect>
 <a:ListOfPoints>((-13112,-6491),(-13112,-2250))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4389,7 +4389,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o13">
 <a:CreationDate>1726277316</a:CreationDate>
 <a:ModificationDate>1726277444</a:ModificationDate>
-<a:Rect>((-28621,-6891), (-13322,2051))</a:Rect>
+<a:Rect>((-28711,-6891), (-13231,2051))</a:Rect>
 <a:ListOfPoints>((-20971,1651),(-20971,-6491))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4411,7 +4411,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o16">
 <a:CreationDate>1726277553</a:CreationDate>
 <a:ModificationDate>1726277553</a:ModificationDate>
-<a:Rect>((8119,6665), (22818,8322))</a:Rect>
+<a:Rect>((8028,6665), (22908,8319))</a:Rect>
 <a:ListOfPoints>((10829,7290),(20107,7290))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4433,7 +4433,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o20">
 <a:CreationDate>1726277630</a:CreationDate>
 <a:ModificationDate>1726277710</a:ModificationDate>
-<a:Rect>((-12912,-11325), (11731,6551))</a:Rect>
+<a:Rect>((-12912,-11325), (11821,6551))</a:Rect>
 <a:ListOfPoints>((4171,6151),(4171,-10700),(-12512,-10700))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
